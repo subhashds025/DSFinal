@@ -26,4 +26,6 @@ public interface BusRepository extends JpaRepository<Bus, Long> {
 
     @Query("select b from Bus b JOIN StopOrder so on b.id=so.bus.id WHERE so.departureDate=:date AND so.departureTime=:time")
     List<Bus> findBusByDateAndTime(@Param("date")LocalDate date, @Param("time")LocalTime time);
+
+
 }
