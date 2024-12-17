@@ -9,6 +9,10 @@ import java.util.List;
 
 public interface SeatAllocationRepository extends JpaRepository<SeatAllocation, Long> {
 
-    @Query("select sa.seatName from SeatAllocation sa where sa.startingStation=:startingStation and sa.endingStation=:endingStation and sa.bus.id=:busId")
+    @Query("select sa.seatName from SeatAllocation sa where sa.startingStation>=:startingStation and sa.endingStation<=:endingStation and sa.bus.id=:busId")
     List<String> findSeatNameByStatingIdAndEndingIdAnaBusId(@Param("startingStation")int startingStation, @Param("endingStation")int endingStation, @Param("busId")Long busId);
+
+    @Query("select sa.seatName from SeatAllocation sa where sa.startingStation=:startingStation and sa.endingStation=:endingStation and sa.bus.id=:busId")
+    List<String> findSeatNameBySubStatingIdAndEndingIdAnaBusId(@Param("startingStation")int startingStation, @Param("endingStation")int endingStation, @Param("busId")Long busId);
+
 }
